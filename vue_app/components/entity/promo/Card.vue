@@ -1,7 +1,7 @@
 <template>
   <section
       class="promo"
-      :style="{backgroundImage: `url(${data.backgroundImage})`, backgroundColor: data.background}"
+      :class="data.backgroundClass"
   >
     <h1 class="promo-title" v-html="data.title"></h1>
     <p class="promo-text">
@@ -20,16 +20,27 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   data: () => new Promo()
 })
-
-const {backgroundImage} = toRefs(props.data)
 </script>
 
 <style scoped lang="scss">
+.pizza {
+  background: #fff1b8 url("assets/img/promo/pizza.png") no-repeat top -100px right -250px / 830px
+}
+
+.kebab {
+  background: #D6E4FF url("assets/img/promo/kebab.png") no-repeat top 45px right 40px / 450px;
+}
+
+.vegetables {
+  background: #FFF566 url("assets/img/promo/vegetables.png") no-repeat top 0 right 0 / 825px
+}
+
+.sushi {
+  background: #FFF1F0 url("assets/img/promo/sushi.png") no-repeat top 10px right 15px / 500px
+}
+
 .promo {
-  box-shadow: 0 7px 12px rgba(158, 158, 163, 0.1);
-  border-radius: 10px;
   padding: 68px 70px;
-  margin-bottom: 56px;
   background-repeat: no-repeat;
   background-position: top -100px right -250px;
   background-size: auto;
@@ -98,6 +109,12 @@ const {backgroundImage} = toRefs(props.data)
 
   .promo-title {
     margin-bottom: 10px;
+  }
+}
+
+@include for-mobile-only {
+  .promo {
+    padding: 20px;
   }
 }
 </style>
