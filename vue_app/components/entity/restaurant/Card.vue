@@ -23,7 +23,7 @@ withDefaults(defineProps<IProps>(), {
     <div class="card-text">
       <div class="card-heading">
         <h3 class="card-title">{{data.name}}</h3>
-        <span class="card-tag tag">50 мин</span>
+        <span class="card-tag tag">{{data.time_of_delivery}} мин</span>
       </div>
       <!-- /.card-heading -->
       <div class="card-info">

@@ -10,6 +10,7 @@
 .input-address {
   width: 100%;
   background-image: url("assets/img/icon/home.svg");
+  padding-left: 35px;
 
   @include for-mobile-lg-only {
     margin-top: 15px;

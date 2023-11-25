@@ -2,7 +2,7 @@
 <template>
 <UiButtonBase class="button-primary">
   <template #icon>
-    <slot name="icon" />
+      <slot name="icon" />
   </template>
   <template #text>
     <slot name="text" />

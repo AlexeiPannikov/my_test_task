@@ -1,5 +1,40 @@
+<script setup lang="ts">
+const props = defineProps({
+  modelValue: {
+    default: ""
+  },
+  debounce: {
+    type: Number,
+    default: 0,
+  }
+})
+
+const emit = defineEmits(["update:modelValue"])
+
+let timerId: NodeJS.Timeout | null = null
+
+const onInput = (e: Event) => {
+  if (timerId) {
+    clearTimeout(timerId)
+  }
+  timerId = setTimeout(() => {
+    emit('update:modelValue', e.target?.value)
+  }, props.debounce)
+}
+
+onUnmounted(() => {
+  if (timerId) {
+    clearTimeout(timerId)
+  }
+})
+</script>
+
 <template>
-  <input class="input"/>
+  <input
+      :value="modelValue"
+      @input="onInput"
+      class="input"
+  />
 </template>
 
 <style scoped>
@@ -9,7 +44,7 @@
   border-radius: 2px;
   font-size: 16px;
   line-height: 24px;
-  padding: 8px 8px 8px 35px;
+  padding: 8px 8px 8px 8px;
   background-repeat: no-repeat;
   background-position: left 11px center;
 }

@@ -8,15 +8,12 @@
         <div class="section-heading">
           <h2 class="section-title">Рестораны</h2>
           <label class="search">
-            <input type="text" class="input input-search" placeholder="Поиск блюд и ресторанов"/>
+            <FeatureRestaurantsSearch />
           </label>
         </div>
         <div class="cards cards-restaurants">
           <EntityRestaurantCardList />
-
-          <!-- /.card -->
         </div>
-        <!-- /.cards -->
       </section>
     </Container>
   </NuxtLayout>
@@ -68,6 +65,10 @@ const promoList = reactive<Promo[]>([
   display: flex;
   align-items: center;
   margin-bottom: 44px;
+}
+
+.search {
+  margin-left: auto;
 }
 
 @include for-mobile-only {

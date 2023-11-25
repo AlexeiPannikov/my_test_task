@@ -9,9 +9,9 @@
       </label>
       <div class="buttons">
         <span class="user-name"></span>
-        <FeatureLogin/>
+        <FeatureAuthLogin/>
         <FeatureCart/>
-        <FeatureLogout/>
+        <FeatureAuthLogout/>
       </div>
     </header>
   </Container>

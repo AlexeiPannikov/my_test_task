@@ -24,6 +24,10 @@
     -webkit-mask-size: 20px;
     mask-size: 20px;
   }
+
+  &:hover .button-out-svg {
+    background-color: #595959;
+  }
 }
 
 @include for-mobile-only {

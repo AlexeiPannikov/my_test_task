@@ -1,28 +1,39 @@
 import {FetchFactory} from "~/repository/FetchFactory";
-import type {AsyncDataOptions} from "#app";
 import type {FetchOptions} from "ofetch";
-import type {BaseResponse} from "~/repository/modules/BaseResponse";
 import type {GetPartnersResponseItem} from "~/repository/modules/partners/models/GetPartnersResponseItem";
+import type {$Fetch} from "ofetch/dist/node";
 
 export class PartnersModule extends FetchFactory {
-    private readonly RESOURCE = '/partners';
+    readonly RESOURCE = '/partners';
 
-    async getPartners(
-        asyncDataOptions?: AsyncDataOptions<BaseResponse<GetPartnersResponseItem[]>>
+    static readonly PARTNERS_KEY = "partners"
+
+    constructor(fetcher: $Fetch) {
+        super(fetcher);
+    }
+
+    getPartners(
+        fetchOptions?: FetchOptions<'json'>,
     ) {
+        return () => this.call<GetPartnersResponseItem[]>(
+            'GET',
+            `${this.RESOURCE}`,
+            undefined, // body
+            fetchOptions
+        )
+    }
 
-        return useAsyncData(
-            () => {
-                const fetchOptions: FetchOptions<'json'> = {
-                };
-                return this.call<GetPartnersResponseItem[]>(
-                    'GET',
-                    `${this.RESOURCE}`,
-                    undefined, // body
-                    fetchOptions
-                )
-            },
-            asyncDataOptions
+    async getPartnerProducts(
+        products: string,
+    ) {
+        const fetchOptions: FetchOptions<'json'> = {
+            params: {products}
+        };
+        return () => this.call<GetPartnersResponseItem[]>(
+            'GET',
+            `${this.RESOURCE}`,
+            undefined, // body
+            fetchOptions
         )
     }
 }
