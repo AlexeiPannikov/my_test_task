@@ -6,7 +6,7 @@
       </section>
       <section class="restaurants">
         <div class="section-heading">
-          <h2 class="section-title">Рестораны</h2>
+          <UiSectionTitle> Рестораны </UiSectionTitle>
           <label class="search">
             <FeatureRestaurantsSearch />
           </label>
@@ -20,30 +20,30 @@
 </template>
 
 <script setup lang="ts">
-import type {Promo} from "~/components/entity/promo/Promo";
+import type { Promo } from "~/components/entity/promo/Promo";
 
 const promoList = reactive<Promo[]>([
   {
-    title: 'Онлайн-сервис <br/>доставки еды на дом',
+    title: "Онлайн-сервис <br/>доставки еды на дом",
     text: "Блюда из любимого ресторана привезет курьер в перчатках, маске и с антисептиком",
-    backgroundClass: "pizza"
+    backgroundClass: "pizza",
   },
   {
-    title: 'Шашлыки на майские <br> со скидкой 35%',
+    title: "Шашлыки на майские <br> со скидкой 35%",
     text: "Закажите шашлыки в любом ресторане до 10 мая и получите скидку по промокоду OMAGAD",
-    backgroundClass: "kebab"
+    backgroundClass: "kebab",
   },
   {
-    title: 'Скидка 20% на всю еду <br> по промокоду LOVE.JS',
+    title: "Скидка 20% на всю еду <br> по промокоду LOVE.JS",
     text: "Блюдо из ресторана привезут вместе с двумя подарочными книгами по фронтенду",
-    backgroundClass: "vegetables"
+    backgroundClass: "vegetables",
   },
   {
-    title: 'Сеты со скидкой до 30% <br> в ресторанах',
+    title: "Сеты со скидкой до 30% <br> в ресторанах",
     text: "Скидки на сеты до 30 мая по промокоду DADADA",
-    backgroundClass: "sushi"
+    backgroundClass: "sushi",
   },
-])
+]);
 </script>
 
 <style scoped lang="scss">
@@ -75,7 +75,6 @@ const promoList = reactive<Promo[]>([
   .user-name {
     margin: 10px;
   }
-
 
   .section-heading {
     flex-wrap: wrap;

@@ -1,38 +1,25 @@
 <script setup lang="ts">
-import {Restaurant} from "~/components/entity/restaurant/Restaurant";
-import {RestaurantMapper} from "~/components/entity/restaurant/RestaurantMapper";
-import {PartnersModule} from "~/repository/modules/partners/PartnersModule";
+import { PartnerMapper } from "~/components/entity/restaurant/models/PartnerMapper";
 
-const {$api} = useNuxtApp()
-
-const {data, pending, error} = useAsyncData(
-    PartnersModule.PARTNERS_KEY,
-    $api.partners.getPartners(),
-    {
-      transform: (input) => ({
-        success: true,
-        data: input.data?.map(item => RestaurantMapper.toDomain(item))
-      })
-    }
-)
+const { data, pending, error } = useAsyncData(
+  "partners",
+  () => $fetch("/api/partners"),
+  {
+    transform: (input) => input.map((item) => PartnerMapper.toDomain(item)),
+  },
+);
 </script>
 
 <template>
-  <div v-if="pending">
-    Loading...
-  </div>
-  <div v-else-if="error">
-    Error {{ error }}
-  </div>
+  <div v-if="pending">Loading...</div>
+  <div v-else-if="error">Error {{ error }}</div>
   <template v-else>
     <EntityRestaurantCard
-        v-for="partner in data?.data as Restaurant[]"
-        :key="partner?.name"
-        :data="partner"
+      v-for="partner in data"
+      :key="partner.name"
+      :data="partner"
     />
   </template>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

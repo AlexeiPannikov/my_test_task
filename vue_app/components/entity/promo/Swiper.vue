@@ -1,40 +1,37 @@
 <script setup lang="ts">
-import {Promo} from "~/components/entity/promo/Promo";
+import { Promo } from "~/components/entity/promo/Promo";
 
 interface IProps {
-  list: Promo[]
+  list: Promo[];
 }
 
 withDefaults(defineProps<IProps>(), {
-  list: () => ([])
-})
+  list: () => [],
+});
 </script>
 
 <template>
   <Swiper
-      :modules="[SwiperAutoplay, SwiperEffectCreative]"
-      :slides-per-view="1"
-      :loop="true"
-      class="promo-swiper"
-      :effect="'creative'"
-      :autoplay="{
-        delay: 5000,
-        disableOnInteraction: true
-      }"
-      :creative-effect="{
-        prev: {
-          shadow: false,
-          translate: ['-20%', 0, -1]
-        },
-        next: {
-          translate: ['100%', 0, 0]
-        }
-      }"
+    :modules="[SwiperAutoplay, SwiperEffectCreative]"
+    :slides-per-view="1"
+    :loop="true"
+    class="promo-swiper"
+    :effect="'creative'"
+    :autoplay="{
+      delay: 5000,
+      disableOnInteraction: true,
+    }"
+    :creative-effect="{
+      prev: {
+        shadow: false,
+        translate: ['-20%', 0, -1],
+      },
+      next: {
+        translate: ['100%', 0, 0],
+      },
+    }"
   >
-    <SwiperSlide
-        v-for="(item, idx) in list"
-        :key="idx"
-    >
+    <SwiperSlide v-for="(item, idx) in list" :key="idx">
       <EntityPromoCard :data="item" />
     </SwiperSlide>
   </Swiper>

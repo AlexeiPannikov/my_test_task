@@ -1,14 +1,21 @@
 <template>
-  <UiButtonPrimary class="button-out">
+  <UiButtonPrimary class="button-out" @click="logout">
     <template #icon>
       <span class="button-out-svg"></span>
     </template>
-    <template #text>
-      <span class="button-text">Выйти</span>
-    </template>
+    Выйти
   </UiButtonPrimary>
 </template>
 
+<script setup lang="ts">
+import { useUserStore } from "~/components/entity/user/UserStore";
+
+const user = useUserStore();
+
+const logout = () => {
+  user.value = null;
+};
+</script>
 <style scoped lang="scss">
 .button-out {
   margin: 0 5px;
@@ -44,7 +51,3 @@
   }
 }
 </style>
-<script setup lang="ts">
-
-
-</script>

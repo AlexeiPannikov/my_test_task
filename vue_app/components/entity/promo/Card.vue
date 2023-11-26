@@ -1,42 +1,43 @@
 <template>
-  <section
-      class="promo"
-      :class="data.backgroundClass"
-  >
+  <section class="promo" :class="data.backgroundClass">
     <h1 class="promo-title" v-html="data.title"></h1>
     <p class="promo-text">
-      {{data.text}}
+      {{ data.text }}
     </p>
   </section>
 </template>
 
 <script setup lang="ts">
-import {Promo} from "~/components/entity/promo/Promo";
+import { Promo } from "~/components/entity/promo/Promo";
 
 interface IProps {
-  data: Promo
+  data: Promo;
 }
 
-const props = withDefaults(defineProps<IProps>(), {
-  data: () => new Promo()
-})
+withDefaults(defineProps<IProps>(), {
+  data: () => new Promo(),
+});
 </script>
 
 <style scoped lang="scss">
 .pizza {
-  background: #fff1b8 url("assets/img/promo/pizza.png") no-repeat top -100px right -250px / 830px
+  background: #fff1b8 url("assets/img/promo/pizza.png") no-repeat top -100px right -250px /
+    830px;
 }
 
 .kebab {
-  background: #D6E4FF url("assets/img/promo/kebab.png") no-repeat top 45px right 40px / 450px;
+  background: #d6e4ff url("assets/img/promo/kebab.png") no-repeat top 45px right
+    40px / 450px;
 }
 
 .vegetables {
-  background: #FFF566 url("assets/img/promo/vegetables.png") no-repeat top 0 right 0 / 825px
+  background: #fff566 url("assets/img/promo/vegetables.png") no-repeat top 0
+    right 0 / 825px;
 }
 
 .sushi {
-  background: #FFF1F0 url("assets/img/promo/sushi.png") no-repeat top 10px right 15px / 500px
+  background: #fff1f0 url("assets/img/promo/sushi.png") no-repeat top 10px right
+    15px / 500px;
 }
 
 .promo {

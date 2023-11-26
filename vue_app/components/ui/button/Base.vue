@@ -1,14 +1,22 @@
 <template>
-  <button class="button">
+  <button class="button" :class="{ disabled: disabled }">
     <span class="button-icon">
-      <slot name="icon"/>
+      <slot name="icon" />
     </span>
     <span class="button-text">
-      <slot name="text"/>
+      <slot />
     </span>
   </button>
 </template>
 
+<script setup lang="ts">
+defineProps({
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 <style scoped lang="scss">
 .button {
   display: flex;
@@ -30,6 +38,12 @@
   }
 }
 
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 @include for-mobile-only {
   .button-text {
     display: none;
@@ -43,5 +57,3 @@
   }
 }
 </style>
-<script setup lang="ts">
-</script>

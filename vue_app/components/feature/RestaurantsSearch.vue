@@ -1,31 +1,25 @@
 <script setup lang="ts">
-import {RestaurantMapper} from "~/components/entity/restaurant/RestaurantMapper";
-import type {BaseResponse} from "~/repository/modules/BaseResponse";
-import type {GetPartnersResponseItem} from "~/repository/modules/partners/models/GetPartnersResponseItem";
-import {PartnersModule} from "~/repository/modules/partners/PartnersModule";
+import { PartnerMapper } from "~/components/entity/restaurant/models/PartnerMapper";
 
-const text = ref("")
+const text = ref("");
 
 useAsyncData(
-    PartnersModule.PARTNERS_KEY,
-    () => $fetch<BaseResponse<GetPartnersResponseItem[]>>("http://localhost:3000/api/partners", {query: {search_text: text.value}}),
-    {
-      lazy: true,
-      watch: [text],
-      transform: (input) => ({
-        success: true,
-        data: input?.data?.map(item => RestaurantMapper.toDomain(item)),
-      })
-    }
-)
+  "partners",
+  () => $fetch("/api/partners", { query: { search_text: text.value } }),
+  {
+    immediate: false,
+    watch: [text],
+    transform: (input) => input.map((item) => PartnerMapper.toDomain(item)),
+  },
+);
 </script>
 
 <template>
   <UiInputBase
-      v-model="text"
-      class="input-search"
-      placeholder="Поиск блюд и ресторанов"
-      :debounce="300"
+    v-model="text"
+    class="input-search"
+    placeholder="Поиск блюд и ресторанов"
+    :debounce="300"
   />
 </template>
 

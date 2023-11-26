@@ -1,15 +1,20 @@
-
 <template>
-<UiButtonBase class="button-primary">
-  <template #icon>
+  <UiButtonBase :disabled="disabled" class="button-primary">
+    <template #icon>
       <slot name="icon" />
-  </template>
-  <template #text>
-    <slot name="text" />
-  </template>
-</UiButtonBase>
+    </template>
+    <slot />
+  </UiButtonBase>
 </template>
 
+<script setup lang="ts">
+defineProps({
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
 <style scoped lang="scss">
 .button-primary {
   background: #1890ff;
@@ -23,5 +28,3 @@
   }
 }
 </style>
-<script setup lang="ts">
-</script>

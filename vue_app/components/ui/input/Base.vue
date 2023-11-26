@@ -1,40 +1,37 @@
 <script setup lang="ts">
 const props = defineProps({
   modelValue: {
-    default: ""
+    type: String,
+    default: "",
   },
   debounce: {
     type: Number,
     default: 0,
-  }
-})
+  },
+});
 
-const emit = defineEmits(["update:modelValue"])
+const emit = defineEmits(["update:modelValue"]);
 
-let timerId: NodeJS.Timeout | null = null
+let timerId: NodeJS.Timeout | null = null;
 
 const onInput = (e: Event) => {
   if (timerId) {
-    clearTimeout(timerId)
+    clearTimeout(timerId);
   }
   timerId = setTimeout(() => {
-    emit('update:modelValue', e.target?.value)
-  }, props.debounce)
-}
+    emit("update:modelValue", e.target?.value);
+  }, props.debounce);
+};
 
 onUnmounted(() => {
   if (timerId) {
-    clearTimeout(timerId)
+    clearTimeout(timerId);
   }
-})
+});
 </script>
 
 <template>
-  <input
-      :value="modelValue"
-      @input="onInput"
-      class="input"
-  />
+  <input :value="modelValue" class="input" @input="onInput" />
 </template>
 
 <style scoped>

@@ -10,5 +10,8 @@ module.exports = {
   },
   extends: ["@nuxtjs/eslint-config-typescript", "plugin:prettier/recommended"],
   plugins: [],
-  rules: {},
+  rules: {
+    "vue/multi-word-component-names": "off",
+    camelcase: "off",
+  },
 };

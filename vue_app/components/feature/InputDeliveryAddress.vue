@@ -1,9 +1,5 @@
 <template>
-  <UiInputBase
-      type="text"
-      placeholder="Адрес доставки"
-      class="input-address"
-  />
+  <UiInputBase type="text" placeholder="Адрес доставки" class="input-address" />
 </template>
 
 <style scoped lang="scss">

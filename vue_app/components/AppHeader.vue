@@ -1,17 +1,23 @@
+<script setup lang="ts">
+import { useUserStore } from "~/components/entity/user/UserStore.js";
+
+const user = useUserStore();
+</script>
+
 <template>
   <Container>
     <header class="header">
       <NuxtLink to="/" class="logo">
-        <img src="~assets/img/icon/logo.svg" alt="Logo"/>
+        <img src="~assets/img/icon/logo.svg" alt="Logo" />
       </NuxtLink>
       <label class="address">
-        <FeatureInputDeliveryAddress/>
+        <FeatureInputDeliveryAddress />
       </label>
       <div class="buttons">
-        <span class="user-name"></span>
-        <FeatureAuthLogin/>
-        <FeatureCart/>
-        <FeatureAuthLogout/>
+        <span class="user-name">{{ user?.name }}</span>
+        <FeatureAuthLogin v-if="!user" />
+        <EntityCart v-if="user" />
+        <FeatureAuthLogout v-if="user" />
       </div>
     </header>
   </Container>

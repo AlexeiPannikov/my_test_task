@@ -1,47 +1,27 @@
 <script setup lang="ts">
 interface IProps {
   isOpen: boolean;
-  excludeId?: string
 }
 
-const props = withDefaults(defineProps<IProps>(), {
+withDefaults(defineProps<IProps>(), {
   isOpen: false,
-  excludeId: ""
-})
+});
 
-const emit = defineEmits(["update:isOpen"])
+const emit = defineEmits(["update:isOpen"]);
 
-const modalDialog: globalThis.Ref = ref(null)
-
-const onClickOutside = (e: MouseEvent) => {
-  const el = document.getElementById(props.excludeId)
-  const target = e.target as Node
-  if (!modalDialog.value?.contains(target) && !el?.contains(target)) {
-    console.log("-----")
-    emit("update:isOpen", false)
-  }
-}
-
-watch(() => props.isOpen, () => {
-  if (props.isOpen) {
-    setTimeout(() => document.addEventListener("click", onClickOutside))
-  } else {
-    document.removeEventListener("click", onClickOutside)
-  }
-})
-
-onUnmounted(() => {
-  document.removeEventListener("click", onClickOutside)
-})
+const onClose = () => {
+  emit("update:isOpen", false);
+};
 </script>
 
 <template>
   <teleport v-if="isOpen" to="body">
-    <div class="modal-dialog-wrapper">
-      <div
-          ref="modalDialog"
-          class="modal-dialog"
-      >
+    <div
+      class="modal-dialog-wrapper"
+      @click.self.stop="emit('update:isOpen', false)"
+    >
+      <div class="modal-dialog">
+        <button class="close" @click="onClose">×</button>
         <slot />
       </div>
     </div>
@@ -67,6 +47,16 @@ onUnmounted(() => {
     padding: 40px 45px;
     display: flex;
     flex-direction: column;
+    position: relative;
+
+    .close {
+      font-size: 36px;
+      border: none;
+      background-color: transparent;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
   }
 }
 </style>
