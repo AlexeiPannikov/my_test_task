@@ -41,6 +41,12 @@ yarn dev
 bun run dev
 ```
 
+## USER
+```
+login: root
+password: root
+```
+
 # Part 2
 
 ### Go to
