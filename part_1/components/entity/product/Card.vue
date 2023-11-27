@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Product } from "~/components/entity/product/models/Product";
 import AddToCartButton from "~/components/feature/cart/AddToCartButton.vue";
+import {useUserStore} from "~/components/entity/user/UserStore";
 
 interface IProps {
   product: Product;
@@ -9,6 +10,8 @@ interface IProps {
 withDefaults(defineProps<IProps>(), {
   product: null,
 });
+
+const user = useUserStore()
 </script>
 
 <template>
@@ -28,7 +31,7 @@ withDefaults(defineProps<IProps>(), {
         </div>
       </UiCardInfo>
       <div class="card-buttons">
-        <AddToCartButton :product="product" style="margin-right: 30px" />
+        <AddToCartButton v-if="user" :product="product" style="margin-right: 30px" />
         <strong class="card-price-bold">{{ product.price }} ₽</strong>
       </div>
     </UiCardText>

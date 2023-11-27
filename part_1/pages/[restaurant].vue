@@ -40,8 +40,14 @@ const {data, pending, error} = useAsyncData(
     },
 );
 
+watch(data, () => {
+  useHead({
+    title: data?.value?.restaurant?.name
+  })
+})
+
 onMounted(() => {
-  order.value = (route.query.order as string) || "desc";
+  order.value = (route.query.order as string) || undefined;
   searchText.value = route.query.search_text as string;
 });
 </script>

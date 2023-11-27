@@ -40,7 +40,7 @@ const onSubmit = () => {
     <span>Войти</span>
   </UiButtonPrimary>
 
-  <UiModalWindowBase v-model:is-open="isOpen">
+  <LazyUiModalWindowBase v-model:is-open="isOpen">
     <form id="logInForm" @submit.prevent="onSubmit">
       <fieldset class="modal-body">
         <UiModalWindowTitle>Авторизация</UiModalWindowTitle>
@@ -61,7 +61,7 @@ const onSubmit = () => {
         </div>
       </div>
     </form>
-  </UiModalWindowBase>
+  </LazyUiModalWindowBase>
 </template>
 
 <style scoped lang="scss">

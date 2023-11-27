@@ -22,6 +22,10 @@
 <script setup lang="ts">
 import type { Promo } from "~/components/entity/promo/Promo";
 
+useHead({
+  title: "Delivery Food"
+})
+
 const promoList = reactive<Promo[]>([
   {
     title: "Онлайн-сервис <br/>доставки еды на дом",
